@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class SubjectListScreen extends StatefulWidget {
   @override
@@ -31,7 +32,6 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              // Show a dialog to add a new subject
               _showAddSubjectDialog(context);
             },
           ),
@@ -45,6 +45,7 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
             return SubjectCard(
               subjectName: subjects[index]["subject"]!,
               teacherName: subjects[index]["teacher"]!,
+              cardIndex: index,
             );
           },
         ),
@@ -104,11 +105,24 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
 class SubjectCard extends StatelessWidget {
   final String subjectName;
   final String teacherName;
+  final int cardIndex;
 
-  SubjectCard({required this.subjectName, required this.teacherName});
+  SubjectCard({required this.subjectName, required this.teacherName, required this.cardIndex});
+
+  final List<List<Color>> gradientColors = [
+    [Colors.purple, Colors.blue],
+    [Colors.orange, Colors.red],
+    [Colors.green, Colors.lightGreenAccent],
+    [Colors.pink, Colors.deepOrangeAccent],
+    [Colors.cyan, Colors.blueAccent],
+    [Colors.amber, Colors.deepOrange],
+    [Colors.indigo, Colors.teal],
+  ];
 
   @override
   Widget build(BuildContext context) {
+    List<Color> colors = gradientColors[cardIndex % gradientColors.length];
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -118,12 +132,11 @@ class SubjectCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          // image: DecorationImage(
-          //   image: AssetImage('assets/background.png'), // Add a background image
-          //   fit: BoxFit.cover,
-          //   colorFilter:
-          //       ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.darken),
-          // ),
+          gradient: LinearGradient(
+            colors: colors,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -132,14 +145,20 @@ class SubjectCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.book_rounded, color: Colors.white, size: 28),
+                  Icon(
+                    _getRandomIcon(),
+                    color: Colors.white,
+                    size: 28,
+                  ),
                   SizedBox(width: 10),
-                  Text(
-                    subjectName,
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  Expanded(
+                    child: Text(
+                      subjectName,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
@@ -149,11 +168,13 @@ class SubjectCard extends StatelessWidget {
                 children: [
                   Icon(Icons.person_rounded, color: Colors.white70),
                   SizedBox(width: 10),
-                  Text(
-                    "Teacher: $teacherName",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white70,
+                  Expanded(
+                    child: Text(
+                      "Teacher: $teacherName",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white70,
+                      ),
                     ),
                   ),
                 ],
@@ -163,5 +184,18 @@ class SubjectCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  IconData _getRandomIcon() {
+    List<IconData> icons = [
+      Icons.book,
+      Icons.science,
+      Icons.calculate,
+      Icons.computer,
+      Icons.history,
+      Icons.biotech,
+      Icons.language,
+    ];
+    return icons[cardIndex % icons.length];
   }
 }
