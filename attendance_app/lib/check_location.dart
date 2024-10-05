@@ -1,26 +1,5 @@
-import 'package:attendance_app/classes.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Location Checker App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SubjectListScreen(),
-    );
-  }
-}
 
 class LocationCheckerScreen extends StatefulWidget {
   @override
@@ -69,8 +48,6 @@ class _LocationCheckerScreenState extends State<LocationCheckerScreen> {
     // Get current position
     Position currentPosition = await Geolocator.getCurrentPosition(
         locationSettings: AndroidSettings(accuracy: LocationAccuracy.high));
-    print(currentPosition.latitude);
-    print(currentPosition.longitude);
 
     // Calculate distance to target location
     double distanceInMeters = Geolocator.distanceBetween(
