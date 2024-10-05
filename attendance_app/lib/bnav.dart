@@ -1,5 +1,6 @@
 import 'package:attendance_app/pages/classes.dart';
 import 'package:attendance_app/pages/classes_2.dart';
+import 'package:attendance_app/pages/my_profile.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -15,7 +16,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   static List<Widget> _widgetOptions = <Widget>[
     SubjectListScreen(),
     SubjectListScreen2(),
-    SubjectListScreen(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
