@@ -1,4 +1,5 @@
-import 'package:attendance_app/classes.dart';
+import 'package:attendance_app/bnav.dart';
+import 'package:attendance_app/pages/classes.dart';
 import 'package:attendance_app/pages/login.dart';
 import 'package:attendance_app/widgets/sign_up.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home:  AddItemPage(),
-      home: SubjectListScreen(),
+      home: BottomNavBar(),
     );
   }
 }
