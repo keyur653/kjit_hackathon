@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 import 'package:attendance_app/bnav.dart';
-import 'package:attendance_app/pages/classes.dart';
-=======
-import 'package:attendance_app/classes_page.dart';
->>>>>>> 62498fda2560f92d297be069426155f381142123
-import 'package:attendance_app/pages/login.dart';
-import 'package:attendance_app/widgets/sign_up.dart';
+import 'package:attendance_app/pages/location.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home:  AddItemPage(),
-      home: BottomNavBar(),
+      home: LocationCheckerScreen(),
     );
   }
 }
