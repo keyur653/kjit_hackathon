@@ -1,3 +1,4 @@
+import 'package:attendance_app/theme.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -28,14 +29,19 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Classroom Subjects'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              _showAddSubjectDialog(context);
-            },
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: CustomTheme.primaryGradient,
           ),
-        ],
+        ),
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(Icons.add),
+        //     onPressed: () {
+        //       _showAddSubjectDialog(context);
+        //     },
+        //   ),
+        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -110,8 +116,8 @@ class SubjectCard extends StatelessWidget {
   SubjectCard({required this.subjectName, required this.teacherName, required this.cardIndex});
 
   final List<List<Color>> gradientColors = [
+    [CustomTheme.loginGradientStart, CustomTheme.loginGradientEnd],
     [Colors.purple, Colors.blue],
-    [Colors.orange, Colors.red],
     [Colors.green, Colors.lightGreenAccent],
     [Colors.pink, Colors.deepOrangeAccent],
     [Colors.cyan, Colors.blueAccent],
