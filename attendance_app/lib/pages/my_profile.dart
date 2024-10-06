@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
           children: [
             const ProfilePic(image: "https://i.postimg.cc/cCsYDjvj/user-2.png"),
             Text(
-              "Annette Black",
+              "Keyur Doshi",
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const Divider(height: 16.0 * 2),
