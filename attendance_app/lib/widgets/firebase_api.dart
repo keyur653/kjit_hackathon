@@ -11,13 +11,13 @@ class FirebaseApi {
     print('FCM Token: $fCMToken');
   }
 
-  void handleMessage(RemoteMessage? message) {
-    if (message != null) {
-      print('From: ${message.from}');
-      print('Notification: ${message.notification?.body ?? ''}');
-    }
-    navigatorKey.currentState?.push(
-    MaterialPageRoute(builder: (context) => SubjectListScreen2()),
-  );
-  }
+  // void handleMessage(RemoteMessage? message) {
+  //   if (message != null) {
+  //     print('From: ${message.from}');
+  //     print('Notification: ${message.notification?.body ?? ''}');
+  //   }
+  //   navigatorKey.currentState?.push(
+  //   MaterialPageRoute(builder: (context) => StudentDashboard()),
+  // );
+  // }
 }

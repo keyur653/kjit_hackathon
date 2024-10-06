@@ -29,7 +29,7 @@ class EditProfileScreen extends StatelessWidget {
                   UserInfoEditField(
                     text: "Name",
                     child: TextFormField(
-                      initialValue: "Annette Black",
+                      initialValue: "Keyur",
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color(0xFF00BF6D).withOpacity(0.05),
@@ -45,7 +45,7 @@ class EditProfileScreen extends StatelessWidget {
                   UserInfoEditField(
                     text: "Email",
                     child: TextFormField(
-                      initialValue: "annette@gmail.com",
+                      initialValue: "keyur@gmail.com",
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color(0xFF00BF6D).withOpacity(0.05),
@@ -61,7 +61,7 @@ class EditProfileScreen extends StatelessWidget {
                   UserInfoEditField(
                     text: "Phone",
                     child: TextFormField(
-                      initialValue: "(316) 555-0116",
+                      initialValue: "123456789",
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color(0xFF00BF6D).withOpacity(0.05),
@@ -75,9 +75,9 @@ class EditProfileScreen extends StatelessWidget {
                     ),
                   ),
                   UserInfoEditField(
-                    text: "Address",
+                    text: "Year",
                     child: TextFormField(
-                      initialValue: "New York, NVC",
+                      initialValue: "Third Year",
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color(0xFF00BF6D).withOpacity(0.05),

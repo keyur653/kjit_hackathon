@@ -1,5 +1,4 @@
 import 'package:attendance_app/bnav.dart';
-import 'package:attendance_app/pages/location.dart';
 import 'package:attendance_app/widgets/firebase_api.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
