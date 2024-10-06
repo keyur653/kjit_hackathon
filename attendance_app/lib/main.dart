@@ -17,9 +17,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+
       ),
       // home:  AddItemPage(),
-      home: LocationCheckerScreen(),
+      home: BottomNavBar(),
     );
   }
 }

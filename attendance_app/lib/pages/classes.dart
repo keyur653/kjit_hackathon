@@ -1,6 +1,6 @@
-import 'package:attendance_app/theme.dart';
+import 'package:attendance_app/pages/class_detail.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'package:attendance_app/theme.dart';
 
 class SubjectListScreen extends StatefulWidget {
   @override
@@ -34,14 +34,6 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
             gradient: CustomTheme.primaryGradient,
           ),
         ),
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(Icons.add),
-        //     onPressed: () {
-        //       _showAddSubjectDialog(context);
-        //     },
-        //   ),
-        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -52,58 +44,19 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
               subjectName: subjects[index]["subject"]!,
               teacherName: subjects[index]["teacher"]!,
               cardIndex: index,
+              onTap: () {
+                // Navigate to SubjectDetailScreen when tapped
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AttendancePage(),
+                  ),
+                );
+              },
             );
           },
         ),
       ),
-    );
-  }
-
-  void _showAddSubjectDialog(BuildContext context) {
-    String subjectName = '';
-    String teacherName = '';
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Add New Subject'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                decoration: InputDecoration(labelText: 'Subject Name'),
-                onChanged: (value) {
-                  subjectName = value;
-                },
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Teacher Name'),
-                onChanged: (value) {
-                  teacherName = value;
-                },
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              child: Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Add'),
-              onPressed: () {
-                if (subjectName.isNotEmpty && teacherName.isNotEmpty) {
-                  addSubject(subjectName, teacherName);
-                  Navigator.of(context).pop();
-                }
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }
@@ -112,8 +65,14 @@ class SubjectCard extends StatelessWidget {
   final String subjectName;
   final String teacherName;
   final int cardIndex;
+  final VoidCallback onTap;
 
-  SubjectCard({required this.subjectName, required this.teacherName, required this.cardIndex});
+  SubjectCard({
+    required this.subjectName,
+    required this.teacherName,
+    required this.cardIndex,
+    required this.onTap,
+  });
 
   final List<List<Color>> gradientColors = [
     [CustomTheme.loginGradientStart, CustomTheme.loginGradientEnd],
@@ -129,63 +88,67 @@ class SubjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Color> colors = gradientColors[cardIndex % gradientColors.length];
 
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      elevation: 8,
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-      child: Container(
-        decoration: BoxDecoration(
+    return InkWell(
+      onTap: onTap, // Handle tap event
+      borderRadius: BorderRadius.circular(15), // Match card's border radius for ripple effect
+      child: Card(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
-          gradient: LinearGradient(
-            colors: colors,
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    _getRandomIcon(),
-                    color: Colors.white,
-                    size: 28,
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      subjectName,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+        elevation: 8,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            gradient: LinearGradient(
+              colors: colors,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      _getRandomIcon(),
+                      color: Colors.white,
+                      size: 28,
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        subjectName,
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 12),
-              Row(
-                children: [
-                  Icon(Icons.person_rounded, color: Colors.white70),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      "Teacher: $teacherName",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white70,
+                  ],
+                ),
+                SizedBox(height: 12),
+                Row(
+                  children: [
+                    Icon(Icons.person_rounded, color: Colors.white70),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        "Teacher: $teacherName",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white70,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -205,3 +168,5 @@ class SubjectCard extends StatelessWidget {
     return icons[cardIndex % icons.length];
   }
 }
+
+// New page to display subject details
