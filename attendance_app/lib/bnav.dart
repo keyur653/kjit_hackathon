@@ -15,7 +15,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   static List<Widget> _widgetOptions = <Widget>[
     SubjectListScreen(),
-    SubjectListScreen2(),
+    StudentDashboard(),
     ProfileScreen(),
   ];
 
