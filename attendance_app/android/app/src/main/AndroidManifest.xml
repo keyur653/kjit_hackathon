@@ -2,6 +2,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+<<<<<<< HEAD
+=======
+<uses-permission android:name="android.permission.CAMERA" />
+>>>>>>> c272a44a74db198961a13da819e6ef70cb2f5112
     <application
         android:label="attendance_app"
         android:name="${applicationName}"

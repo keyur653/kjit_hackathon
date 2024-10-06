@@ -4,6 +4,10 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   file_selector_windows
+<<<<<<< HEAD
+=======
+  firebase_core
+>>>>>>> c272a44a74db198961a13da819e6ef70cb2f5112
   geolocator_windows
 )
 
